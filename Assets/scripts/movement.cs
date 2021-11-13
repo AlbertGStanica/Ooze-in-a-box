@@ -12,6 +12,7 @@ public class movement : MonoBehaviour
     public Transform isGroundedChecker;
     public float checkGroundRadius;
     public LayerMask groundLayer;
+    int count = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,16 @@ public class movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == false && count < 2)
+        {
+
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            count++;
+
         }
     }
 
@@ -50,6 +61,7 @@ public class movement : MonoBehaviour
         if (collider != null)
         {
             isGrounded = true;
+            count = 1;
         }
         else
         {
