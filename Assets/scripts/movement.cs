@@ -13,12 +13,14 @@ public class movement : MonoBehaviour
     public float checkGroundRadius;
     public LayerMask groundLayer;
     int count = 1;
+    AudioSouce jumpSound;
 
     // Start is called before the first frame update
     void Start()
     {
 
         rb = GetComponent<Rigidbody2D>();
+        jumpSound = GetComponent<AudioSource>();
 
     }
 
@@ -42,7 +44,7 @@ public class movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            
+            jumpSound.Play();
             
         }
 
@@ -51,7 +53,7 @@ public class movement : MonoBehaviour
 
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             count++;
-
+            jumpSound.Play();
         }
     }
 
