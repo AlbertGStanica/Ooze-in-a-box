@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    
+    AudioSource keySound;
     void Start()
     {
         keySound = GetComponent<AudioSource>();
