@@ -13,7 +13,7 @@ public class movement : MonoBehaviour
     public float checkGroundRadius;
     public LayerMask groundLayer;
     int count = 1;
-    AudioSource jumpSound;
+    public AudioSource jumpSound;
 
     // Start is called before the first frame update
     void Start()
