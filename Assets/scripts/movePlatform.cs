@@ -42,13 +42,20 @@ public class movePlatform : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    /*void OnCollisionEnter2D(Collision2D col)
     {
-        col.gameObject.transform.SetParent(gameObject.transform, true);
+
+        if (col.gameObject.CompareTag("Player"))
+        {
+
+
+            col.gameObject.transform.parent = col.gameObject.transform;
+
+        }
     }
 
     void OnCollisionExit2D(Collision2D col)
     {
         col.gameObject.transform.parent = null;
-    }
+    }*/
 }

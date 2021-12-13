@@ -7,6 +7,8 @@ public class animation : MonoBehaviour
     public Animator anim;
     [SerializeField] private Transform player;
     private Vector2 initScale;
+    private Vector2 initScale2;
+    public GameObject Scaling;
     // Use this for initialization
     void Start()
     {
@@ -16,23 +18,35 @@ public class animation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+
+
+        if(Input.GetKeyDown(KeyCode.A))
         {
-            player.localScale = new Vector2(initScale.x * -1, initScale.y);
+
+          
+                player.localScale = new Vector2(initScale.x * -1, initScale.y);
+            
+
             anim.SetTrigger("keyPress");
 
+
         }
-        if(Input.GetKeyUp(KeyCode.A))
+        if (Input.GetKeyUp(KeyCode.A))
         {
 
             anim.SetTrigger("keyRelease");
+
 
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            player.localScale = new Vector2(initScale.x * 1, initScale.y);
+
+                player.localScale = new Vector2(initScale.x * 1, initScale.y);
+            
+
             anim.SetTrigger("keyPress");
+
 
         }
         if (Input.GetKeyUp(KeyCode.D))
@@ -44,7 +58,7 @@ public class animation : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            
+
             anim.SetTrigger("keyPressJ");
 
         }
@@ -57,5 +71,25 @@ public class animation : MonoBehaviour
 
 
 
+    }
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+
+        if (other.gameObject.CompareTag("platform"))
+        {
+
+            initScale = player.localScale;
+        }
+    }
+
+    public void OnCollisionExit2D(Collision2D other)
+    {
+
+        if (other.gameObject.CompareTag("platform"))
+        {
+
+            initScale = player.localScale;
+
+        }
     }
 }

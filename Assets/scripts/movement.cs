@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class movement : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class movement : MonoBehaviour
     public float checkGroundRadius;
     public LayerMask groundLayer;
     int count = 1;
+    public int hits;
     public AudioSource jumpSound;
+    public AudioSource hitSFX;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +25,7 @@ public class movement : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         jumpSound = GetComponent<AudioSource>();
-
+        
     }
 
     // Update is called once per frame
@@ -70,6 +74,44 @@ public class movement : MonoBehaviour
         else
         {
             isGrounded = false;
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+
+        if (other.gameObject.CompareTag("platform"))
+        {
+
+            player.transform.parent = other.gameObject.transform;
+
+        }
+        if(other.gameObject.CompareTag("enemy"))
+        {
+
+            
+
+                hits++;
+            hitSFX.Play();
+
+            if (hits >= 3)
+            {
+
+                SceneManager.LoadScene("Start Menu");
+            }
+            
+
+        }
+    }
+
+    public void OnCollisionExit2D(Collision2D other)
+    {
+
+        if (other.gameObject.CompareTag("platform"))
+        {
+
+            player.transform.parent = null;
+
         }
     }
 }
